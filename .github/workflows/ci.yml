@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  html:
+    name: HTML validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: npx --yes html-validate@9 index.html
+
+  a11y:
+    name: Accessibility (axe + HTML_CodeSniffer, WCAG 2 AA)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - name: Serve the site
+        run: |
+          python3 -m http.server 8080 &
+          for i in $(seq 1 20); do curl -sf http://localhost:8080/ >/dev/null && break; sleep 0.5; done
+      # .marquee i and the round-link arrow are aria-hidden symbol glyphs: axe cannot
+      # measure non-BMP glyphs, so .pa11yci.json hides them (their real contrast is 16:1).
+      - run: npx --yes pa11y-ci@4.1.1 --config .pa11yci.json
+
+  links:
+    name: Internal links and assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --include-fragments --no-progress index.html
+          fail: true
+
+  video:
+    name: HyperFrames lint (manifesto composition)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hyperframes-portfolio-manifesto
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      # The licensed music track (.media/) is kept out of the repo, so
+      # audio_src_not_found is expected here; every other lint error fails the job.
+      - name: Lint
+        run: |
+          npx --yes hyperframes@0.8.172 lint . --json > lint.json || true
+          jq -r '.findings[] | select(.severity == "error") | "\(.code): \(.message)"' lint.json
+          errors=$(jq '[.findings[] | select(.severity == "error" and .code != "audio_src_not_found")] | length' lint.json)
+          test "$errors" -eq 0
