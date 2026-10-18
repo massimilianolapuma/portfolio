@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio di un IT System Architect specializzato in DevSecOps, Cloud, full-stack e AI." />
+    <title>System Architect · Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Torna all'inizio">/architect</a>
+      <nav aria-label="Navigazione principale"><a href="#focus">Focus</a><a href="#projects">Progetti</a><a href="#contact">Contatti</a></nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow"><span></span> Portfolio in evoluzione · 2026</p>
+        <h1>Progetto sistemi<br />che rendono <em>possibile</em><br />il prossimo passo.</h1>
+        <div class="hero-bottom"><p>IT System Architect tra DevSecOps, architetture Cloud, sviluppo full stack e intelligenza artificiale.</p><a class="round-link" href="#projects" aria-label="Vai ai progetti"><span>Scopri</span><span aria-hidden="true">↓</span></a></div>
+      </section>
+      <section class="manifesto" aria-label="Video manifesto">
+        <figure class="manifesto-frame">
+          <video id="manifesto-video" src="assets/video/manifesto.mp4" poster="assets/video/manifesto-poster.jpg" autoplay muted loop playsinline preload="metadata"><track kind="captions" src="assets/video/manifesto.it.vtt" srclang="it" label="Italiano"></video>
+          <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false"><span aria-hidden="true"></span><b>Attiva audio</b></button>
+          <figcaption class="sr-only">Video manifesto: Designing systems. Cloud, DevSecOps, Full stack, AI. Cubelite, in development. Making the next step possible.</figcaption>
+        </figure>
+      </section>
+      <section class="marquee" aria-label="Competenze"><div><span>Cloud Architecture</span><i aria-hidden="true">✦</i><span>DevSecOps</span><i aria-hidden="true">✦</i><span>Full Stack</span><i aria-hidden="true">✦</i><span>Applied AI</span><i aria-hidden="true">✦</i><span>Cloud Architecture</span><i aria-hidden="true">✦</i><span>DevSecOps</span><i aria-hidden="true">✦</i><span>Full Stack</span><i aria-hidden="true">✦</i><span>Applied AI</span><i aria-hidden="true">✦</i></div></section>
+      <section class="focus" id="focus">
+        <div class="section-label">01 / Il mio focus</div>
+        <div class="focus-content"><h2>La tecnologia è interessante quando diventa <em>leva.</em></h2><div class="focus-copy"><p>Lavoro tra infrastruttura e prodotto: disegno piattaforme robuste, automatizzo ciò che rallenta i team e costruisco esperienze che portano un'idea fino alle persone.</p><p>In questo spazio raccolgo esperimenti, applicazioni e appunti di un percorso che guarda con curiosità all'AI.</p></div></div>
+        <div class="discipline-grid">
+          <article><span>01</span><h3>Architetture<br />Cloud</h3><p>Scalabili, osservabili e pensate per evolvere.</p></article>
+          <article><span>02</span><h3>DevSecOps</h3><p>Sicurezza e delivery come parti dello stesso sistema.</p></article>
+          <article><span>03</span><h3>Full stack<br />development</h3><p>Dal backend all'interfaccia, con attenzione al prodotto.</p></article>
+          <article><span>04</span><h3>AI &amp;<br />prototipazione</h3><p>Nuovi modi per rendere l'AI utile, concreta e accessibile.</p></article>
+        </div>
+      </section>
+      <section class="projects" id="projects">
+        <div class="section-label">02 / Progetti selezionati</div>
+        <div class="project-list">
+          <article class="project featured"><div class="project-number">01</div><div class="project-main"><p class="project-type">In sviluppo · AI application</p><h2>Cubelite<span aria-hidden="true">↗</span></h2><p class="project-description">Un progetto in costruzione. Qui arriveranno la sua storia, il problema che risolve e il link per esplorarlo.</p><div class="tags"><span>AI</span><span>Product</span><span>Building in public</span></div></div><div class="project-mark" aria-hidden="true"><b>C</b><i></i></div></article>
+          <article class="project placeholder"><div class="project-number">02</div><div class="project-main"><p class="project-type">Prossimamente</p><h2>Next project</h2></div><p>Un posto pronto per la prossima idea.</p></article>
+          <article class="project placeholder"><div class="project-number">03</div><div class="project-main"><p class="project-type">Prossimamente</p><h2>Experiments</h2></div><p>Prototipi, prove e piccole scoperte.</p></article>
+        </div>
+      </section>
+      <section class="now"><div class="section-label">03 / Adesso</div><p>Sto costruendo, imparando e cercando connessioni interessanti tra software, cloud e AI.</p><div class="pulse"><span aria-hidden="true"></span> Open to ideas</div></section>
+    </main>
+    <footer id="contact"><p>Hai un'idea, una sfida o semplicemente vuoi scambiare due parole?</p><a href="mailto:massi.lapuma@gmail.com">Scrivimi <span aria-hidden="true">↗</span></a><div class="footer-bottom"><span>© <span id="year"></span> · Made with curiosity</span><span>Italy / Remote</span></div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

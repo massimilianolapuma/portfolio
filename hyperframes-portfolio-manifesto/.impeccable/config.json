@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/hyperframes-portfolio-manifesto/index.html"
+        ],
+        "createdAt": "2026-10-18T17:59:22.799Z",
+        "reason": "user brief: paper background #f3f0e9 explicitly specified, from portfolio styles.css"
+      },
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/hyperframes-portfolio-manifesto/index.html"
+        ],
+        "createdAt": "2026-10-18T17:59:22.853Z",
+        "reason": "user brief: serif italic explicitly requested for exactly one keyword, mirrors site <em>"
+      }
+    ]
+  }
+}

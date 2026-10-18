@@ -1,0 +1,20 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": [
+      "axe",
+      "htmlcs"
+    ],
+    "timeout": 60000,
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--autoplay-policy=no-user-gesture-required"
+      ]
+    },
+    "hideElements": ".marquee i, .round-link span[aria-hidden]"
+  },
+  "urls": [
+    "http://localhost:8080/"
+  ]
+}

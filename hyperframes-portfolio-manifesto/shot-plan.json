@@ -1,0 +1,60 @@
+{
+  "category": "kinetic-type",
+  "duration_s": 12,
+  "fps": 30,
+  "canvas": { "w": 1920, "h": 1080, "aspect": "16:9" },
+  "style": "Editorial, minimal, technical. Source of truth: ../index.html + ../styles.css (paper bg, near-black ink, acid + orange accents, Manrope 800 display with -0.065em tracking, DM Mono labels, serif italic for one keyword only). Elegant, precise motion; no stock imagery, no fake code, no corporate-AI visuals.",
+  "palette": ["#f3f0e9", "#12110f", "#c9ff31", "#ff6337", "#77736d", "#c9c4bc"],
+  "font": "Manrope (800/500/300) + DM Mono (500) + Gelasio italic (open-source Georgia-metric stand-in for the site's Georgia <em>)",
+  "beats": [3, 6, 9, 11.2],
+  "export": "mp4",
+  "audio": "none",
+  "asset_needs": [],
+  "block": null,
+  "customize": {},
+  "content": {
+    "scenes": [
+      {
+        "id": "s1",
+        "start": 0,
+        "end": 3,
+        "text": "Designing systems",
+        "emphasis_words": ["systems"],
+        "emotion": "calm, precise",
+        "motion": "120px ink grid draws in from center (alternating origins), crosses snap at major intersections, hero lines rise through masks",
+        "beats": [0.2, 1.05]
+      },
+      {
+        "id": "s2",
+        "start": 3,
+        "end": 6,
+        "text": "Cloud / DevSecOps / Full stack / AI",
+        "emphasis_words": ["AI"],
+        "emotion": "constructive, curious",
+        "motion": "grid recedes; four 2x2-cell modules snap onto the grid in sync with each word (clip wipe), connections draw with orange ports, ports pulse once",
+        "beats": [3.2, 3.65, 4.1, 4.55]
+      },
+      {
+        "id": "s3",
+        "start": 6,
+        "end": 9,
+        "text": "Cubelite — in development",
+        "emphasis_words": ["Cubelite"],
+        "emotion": "focused reveal",
+        "motion": "modules collapse to center; CSS 3D cube assembles face by face on a slow turntable, top face turns acid; title rises char by char",
+        "beats": [6.05, 7.0]
+      },
+      {
+        "id": "s4",
+        "start": 9,
+        "end": 12,
+        "text": "Making the next step possible.",
+        "emphasis_words": ["possible."],
+        "emotion": "resolved, open",
+        "motion": "cube shrinks into an acid square module; two lines rise through masks, 'possible.' in serif italic settles its tracking; rule draws to the square; 0.75s dissolve back to empty paper = frame 0 (seamless loop)",
+        "beats": [9.3, 9.95, 11.2]
+      }
+    ]
+  },
+  "brief": "A 12s paper-and-ink manifesto: an ink grid draws itself on warm paper, becomes a small system of connected modules, the modules condense into a cube (Cubelite) with an acid top face, and the cube becomes the full stop of the closing line before everything dissolves back to blank paper, so the piece loops. One dominant motif: construction on a 120px grid."
+}
