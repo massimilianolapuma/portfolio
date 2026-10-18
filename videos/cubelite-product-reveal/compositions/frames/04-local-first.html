@@ -1,0 +1,167 @@
+<template id="04-local-first">
+  <div data-hf-id="hf-03g7" id="root" data-composition-id="04-local-first" data-width="1920" data-height="1080" data-duration="6.5">
+    <style>
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; color: #F1F5F9; font-family: "Inter", sans-serif;
+  --paper: #0F172A; --paper-2: #1E293B; --ink: #F1F5F9; --accent: #60A5FA; --muted: #94A3B8; --border: #334155; --live: #30D098; --hover: #93C5FD; }
+.f04-bg { position: absolute; inset: 0; background-color: var(--paper);
+  background-image: linear-gradient(rgba(96,165,250,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(96,165,250,0.07) 1px, transparent 1px);
+  background-size: 40px 40px; background-position: 0 0; }
+.f04-rule { position: absolute; left: 80px; right: 80px; height: 1px; background: var(--border); }
+.f04-chrome { position: absolute; bottom: 22px; font: 500 18px "JetBrains Mono", monospace; color: var(--muted); letter-spacing: 0.04em; }
+.f04-layer { position: absolute; inset: 0; }
+.f04-mono { font-family: "JetBrains Mono", monospace; }
+
+.f04-text { position: absolute; left: 120px; top: 0; bottom: 0; width: 800px; display: flex; flex-direction: column; justify-content: center; gap: 34px; }
+.f04-text h2 { margin: 0; font-weight: 800; font-size: 112px; letter-spacing: -0.04em; line-height: 0.98; }
+.f04-w { display: inline-block; }
+.f04-sub { font-weight: 500; font-size: 40px; color: var(--muted); }
+.f04-neg { font-weight: 700; font-size: 50px; color: var(--accent); letter-spacing: -0.02em; line-height: 1.15; }
+.f04-neg > div { transform-origin: left center; }
+.f04-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+.f04-perim-label { position: absolute; left: 1028px; top: 170px; padding: 0 12px; background: var(--paper); font: 500 24px "JetBrains Mono", monospace; color: var(--muted); }
+.f04-keychain { position: absolute; left: 1060px; top: 380px; width: 500px; border: 1px solid var(--border); border-radius: 16px; background: var(--paper-2); }
+.f04-kc-head { display: flex; align-items: center; gap: 14px; padding: 18px 24px; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 30px; }
+.f04-kc-row { padding: 16px 24px; font: 500 24px "JetBrains Mono", monospace; color: var(--muted); }
+.f04-kc-row b { color: var(--ink); font-weight: 500; }
+.f04-cloud { position: absolute; left: 1700px; top: 500px; font: 500 24px "JetBrains Mono", monospace; color: #475569; }
+
+    </style>
+    <div data-hf-id="hf-1065" id="f04-bg" class="f04-bg clip" data-start="0" data-duration="6.5" data-track-index="0">
+      <div data-hf-id="hf-b1jd" class="f04-rule" style="top: 58px"></div>
+      <div data-hf-id="hf-eiti" class="f04-rule" style="top: 1021px"></div>
+      <div data-hf-id="hf-newi" class="f04-chrome" style="left: 80px">CubeLite · Kubernetes Context Aggregator</div>
+      <div data-hf-id="hf-bkcm" class="f04-chrome" style="right: 80px">04 / 06</div>
+    </div>
+    <div data-hf-id="hf-jc9t" id="f04-stage" class="f04-layer clip" data-start="0" data-duration="6.5" data-track-index="1">
+      <div data-hf-id="hf-9mpi" class="f04-text">
+        <h2 data-hf-id="hf-2l5r"><span data-hf-id="hf-y2wg" class="f04-w" id="f04-w1">Local-first</span> <span data-hf-id="hf-sage" class="f04-w" id="f04-w2">by</span> <span data-hf-id="hf-us1a" class="f04-w" id="f04-w3">design.</span></h2>
+        <div data-hf-id="hf-80gs" class="f04-sub" id="f04-sub">Credentials in your Keychain</div>
+        <div data-hf-id="hf-vzyv" class="f04-neg"><div data-hf-id="hf-3rmt" id="f04-neg1">No telemetry.</div><div data-hf-id="hf-q5m3" id="f04-neg2">No cloud account.</div></div>
+      </div>
+
+      <!-- "your machine" perimeter: dashed rounded rect revealed by a drawn mask stroke -->
+      <svg data-hf-id="hf-i9fq" class="f04-svg" viewBox="0 0 1920 1080" fill="none">
+        <defs data-hf-id="hf-mh0t">
+          <mask data-hf-id="hf-aa2w" id="f04-m-perim" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080">
+            <rect data-hf-id="hf-8rxe" id="f04-perim-draw" x="1001" y="191" width="622" height="702" rx="27" stroke="#fff" stroke-width="10" fill="none" />
+          </mask>
+        </defs>
+        <rect data-hf-id="hf-nbp5" x="1001" y="191" width="622" height="702" rx="27" stroke="#475569" stroke-width="2" stroke-dasharray="6 6" mask="url(#f04-m-perim)" />
+      </svg>
+      <div data-hf-id="hf-0rw6" class="f04-perim-label" id="f04-perim-label">your machine</div>
+
+      <div data-hf-id="hf-hng2" class="f04-keychain" id="f04-keychain">
+        <div data-hf-id="hf-04cu" class="f04-kc-head" id="f04-kc-head"><svg data-hf-id="hf-6a1c" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#60A5FA" stroke-width="3"><circle data-hf-id="hf-68ke" id="f04-key-ring" cx="11" cy="17" r="7"/><path data-hf-id="hf-o82v" id="f04-key-bit" d="M18 17 H31 M26 17 V23 M31 17 V22"/></svg>Keychain</div>
+        <div data-hf-id="hf-evwt" class="f04-kc-row" id="f04-row1"><b data-hf-id="hf-obnr">client-cert</b> · prod-eu-west-1</div>
+        <div data-hf-id="hf-3vg3" class="f04-kc-row" id="f04-row2"><b data-hf-id="hf-t28s">bearer-token</b> · staging</div>
+        <div data-hf-id="hf-tvlo" class="f04-kc-row" id="f04-row3"><b data-hf-id="hf-1mhz">client-cert</b> · dev-local</div>
+      </div>
+
+      <!-- outbound lines: inside segments draw to the perimeter, outside stubs get cut and fade -->
+      <svg data-hf-id="hf-suh6" class="f04-svg" viewBox="0 0 1920 1080" fill="none">
+        <defs data-hf-id="hf-vl9d">
+          <mask data-hf-id="hf-q18p" id="f04-m-in1" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path data-hf-id="hf-c74y" id="f04-in1-draw" d="M1560 470 H1621" stroke="#fff" stroke-width="8" /></mask>
+          <mask data-hf-id="hf-ncp6" id="f04-m-in2" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path data-hf-id="hf-gvqj" id="f04-in2-draw" d="M1560 560 H1621" stroke="#fff" stroke-width="8" /></mask>
+          <mask data-hf-id="hf-l77e" id="f04-m-out1" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path data-hf-id="hf-rim1" id="f04-out1-draw" d="M1621 470 H1690" stroke="#fff" stroke-width="8" /></mask>
+          <mask data-hf-id="hf-i3jt" id="f04-m-out2" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path data-hf-id="hf-eyr8" id="f04-out2-draw" d="M1621 560 H1690" stroke="#fff" stroke-width="8" /></mask>
+        </defs>
+        <g data-hf-id="hf-2trc" stroke="#475569" stroke-width="2" stroke-dasharray="8 8">
+          <path data-hf-id="hf-mpcn" d="M1560 470 H1621" mask="url(#f04-m-in1)" />
+          <path data-hf-id="hf-eymg" d="M1560 560 H1621" mask="url(#f04-m-in2)" />
+          <g data-hf-id="hf-1clx" id="f04-outside">
+            <path data-hf-id="hf-ds6q" d="M1621 470 H1690" stroke-dashoffset="61" mask="url(#f04-m-out1)" />
+            <path data-hf-id="hf-h2wj" d="M1621 560 H1690" stroke-dashoffset="61" mask="url(#f04-m-out2)" />
+          </g>
+        </g>
+        <g data-hf-id="hf-j655" stroke="#94A3B8" stroke-width="3" stroke-linecap="round">
+          <path data-hf-id="hf-owc0" id="f04-x1a" d="M1608 455 l24 30" />
+          <path data-hf-id="hf-v34r" id="f04-x1b" d="M1632 455 l-24 30" />
+          <path data-hf-id="hf-rq9z" id="f04-x2a" d="M1608 545 l24 30" />
+          <path data-hf-id="hf-986s" id="f04-x2b" d="M1632 545 l-24 30" />
+        </g>
+      </svg>
+      <div data-hf-id="hf-k6af" class="f04-cloud" id="f04-cloud">cloud</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // Measured geometry (analytic, deterministic): rounded-rect perimeter, key glyph, line segments.
+        const R = 27, W = 622, H = 702;
+        const PERIM_LEN = (2 * (W - 2 * R) + 2 * (H - 2 * R) + 2 * Math.PI * R) * 1.02;
+        const RING_LEN = 2 * Math.PI * 7 * 1.05;
+        const BIT_LEN = (13 + 6 + 5) * 1.05;
+        const IN_LEN = 61, OUT_LEN = 69, X_LEN = Math.hypot(24, 30) * 1.05;
+
+        const draw = (sel, len, dur, ease, at) =>
+          tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len },
+            { strokeDashoffset: 0, duration: dur, ease: ease }, at);
+
+        // ── Scene 1 (0.0–1.2s): headline per-word rise; perimeter draws; label fades in ──
+        tl.fromTo(["#f04-w1", "#f04-w2", "#f04-w3"],
+          { y: 46, opacity: 0, filter: "blur(8px)" },
+          { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out", stagger: 0.13 }, 0.1);
+        draw("#f04-perim-draw", PERIM_LEN, 1.0, "power2.out", 0.15);
+        tl.fromTo("#f04-perim-label", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.45, ease: "power1.out" }, 0.65);
+
+        // ── Scene 2 (1.2–3.0s): Keychain panel + key glyph; credential rows slide in from the perimeter edge ──
+        tl.fromTo("#f04-keychain", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 1.2);
+        draw("#f04-key-ring", RING_LEN, 0.35, "power2.out", 1.3);
+        draw("#f04-key-bit", BIT_LEN, 0.3, "power2.out", 1.56);
+        tl.fromTo("#f04-sub", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, 1.55);
+
+        // dynamic-content-sequencing: each row's slot = BASE + chars × SEC_PER_CHAR, pre-computed once.
+        const ROWS = [
+          { sel: "#f04-row1", text: "client-cert · prod-eu-west-1" },
+          { sel: "#f04-row2", text: "bearer-token · staging" },
+          { sel: "#f04-row3", text: "client-cert · dev-local" },
+        ];
+        const BASE = 0.25, SEC_PER_CHAR = 0.006;
+        let cursor = 1.5;
+        const ROW_TIMELINE = ROWS.map((r) => {
+          const start = cursor;
+          cursor += BASE + r.text.length * SEC_PER_CHAR;
+          return { sel: r.sel, start: start };
+        });
+        ROW_TIMELINE.forEach((r) => {
+          tl.fromTo(r.sel, { x: -84, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, r.start);
+        });
+
+        // ── Scene 3 (3.0–4.6s): lines run toward "cloud", get cut at the perimeter, ✕ stamps, outside fades ──
+        tl.fromTo("#f04-cloud", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 2.75);
+        const LINES = [
+          { inn: "#f04-in1-draw", out: "#f04-out1-draw", xa: "#f04-x1a", xb: "#f04-x1b", at: 3.0 },
+          { inn: "#f04-in2-draw", out: "#f04-out2-draw", xa: "#f04-x2a", xb: "#f04-x2b", at: 3.18 },
+        ];
+        LINES.forEach((l) => {
+          draw(l.inn, IN_LEN, 0.4, "none", l.at);
+          draw(l.out, OUT_LEN, 0.42, "none", l.at + 0.4);
+          // cross stamp: forward stroke first, backward follows
+          draw(l.xa, X_LEN, 0.16, "power2.out", l.at + 0.52);
+          draw(l.xb, X_LEN, 0.16, "power2.out", l.at + 0.62);
+        });
+        tl.fromTo("#f04-outside", { opacity: 1 }, { opacity: 0.2, duration: 0.6, ease: "power1.out" }, 3.95);
+
+        // ── Scene 4 (4.6–6.0s): the two negations land on one beat grid, smooth register, then hold ──
+        const BEATS = [4.6, 5.15];
+        tl.fromTo("#f04-neg1",
+          { opacity: 0, scale: 1.12, filter: "blur(10px)" },
+          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, BEATS[0]);
+        tl.fromTo("#f04-neg2",
+          { opacity: 0, x: -60 },
+          { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, BEATS[1]);
+
+        window.__timelines["04-local-first"] = tl;
+      })();
+    </script>
+  </div>
+</template>

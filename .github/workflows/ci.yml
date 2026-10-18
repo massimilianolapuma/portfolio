@@ -46,17 +46,21 @@ jobs:
           fail: true
 
   video:
-    name: HyperFrames lint (manifesto composition)
+    name: HyperFrames lint (${{ matrix.project }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [hyperframes-portfolio-manifesto, videos/cubelite-product-reveal]
     defaults:
       run:
-        working-directory: hyperframes-portfolio-manifesto
+        working-directory: ${{ matrix.project }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
-      # The licensed music track (.media/) is kept out of the repo, so
+      # The licensed music tracks (.media/, assets/bgm/) are kept out of the repo, so
       # audio_src_not_found is expected here; every other lint error fails the job.
       - name: Lint
         run: |

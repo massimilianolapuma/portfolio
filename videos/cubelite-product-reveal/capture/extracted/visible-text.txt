@@ -1,0 +1,101 @@
+[a] Skip to main content
+[a] CubeLite
+[a] Download
+[a] Features
+[a] Architecture
+[h1] CubeLite
+[p] Kubernetes Context Aggregator
+[p] Discover, switch, and manage Kubernetes contexts from a unified interface — fast, local‑first, and privacy‑respecting.
+[a] Download for macOS
+[a] All platforms
+[span] Latest release: v0.5.0
+[span] 📸 Screenshot coming soon
+[h2] Features
+[h3] Context Switching
+[p] Switch active Kubernetes context with a single click and persist the change to disk automatically.
+[h3] Multi-Kubeconfig
+[p] Resolves
+[code] KUBECONFIG
+[p] env paths, merges multiple files, and picks the first file's
+[code] current-context
+[div] 🖥️
+[h3] Lens-like GUI
+[p] NavigationSplitView sidebar listing all contexts with a detail pane for Pods, Namespaces, and Deployments.
+[h3] Menu Bar Quick-Switch
+[p] Click the status-bar icon to switch context without opening the main window — perfect for fast workflows.
+[h3] Secure Credentials
+[p] Bearer tokens and client certificates stored in the OS Keychain — never in plain text config files.
+[h3] No Telemetry
+[p] Zero analytics, zero call-home, zero cloud accounts. Your cluster data stays on your machine.
+[h2] Architecture
+[p] CubeLite is a monorepo with three independent layers — no runtime dependency between them.
+[h3] 🦀 Rust Core
+[code] crates/cubelite-core
+[p] Kubeconfig parsing, kube-rs client, resource types. Rust 1.82+, tokio, thiserror, anyhow.
+[h3] 🍎 macOS App
+[code] apps/macos
+[p] Native Swift 6 + SwiftUI menu-bar and main window. macOS 14+, Observation framework, direct URLSession to k8s API.
+[h3] 🖥️ Desktop App
+[code] apps/desktop
+[p] Cross-platform via Tauri v2 + Svelte 5 + TypeScript. shadcn-svelte, Tailwind v4, Vitest, Playwright.
+[code] cubelite/
+├── crates/
+│   └── cubelite-core/      ← Rust library
+├── apps/
+│   ├── desktop/            ← Tauri v2 + Svelte 5
+│   └── macos/              ← Swift 6 + SwiftUI
+├── design/                 ← Design tokens
+└── docs/                   ← Architecture docs
+[h2] Download
+[p] Grab the latest release — links always point at the newest version. Builds are not yet signed; see the
+[a] installation guide
+[p] for the one-time Gatekeeper/SmartScreen step.
+[h3] CubeLite for macOS
+[p] Native Swift 6 + SwiftUI app with menu-bar quick-switch. macOS 14+. The complete experience.
+[a] DMG
+[a] ZIP
+[h3] CubeLite Desktop
+[span] early preview
+[p] Cross-platform app built with Tauri v2 + Svelte 5. Reduced feature set for now.
+[a] macOS
+[a] Linux AppImage
+[a] Linux deb
+[a] Windows
+[a] All releases and checksums →
+[h2] Documentation
+[h3] Installation
+[p] Download, install, and get past the unsigned-build warnings.
+[h3] Quickstart
+[p] Zero to a live cluster view in five minutes.
+[h3] Features
+[p] Contexts, resources, logs, shell, port-forward, manifest edit.
+[h3] FAQ
+[p] Gatekeeper, RBAC limits, offline clusters, credentials.
+[p] Prefer markdown? The same guide lives in the repo:
+[a] docs/guide
+[h2] Getting Started
+[h3] Prerequisites
+[th] Tool
+[th] Version
+[td] Rust
+[td] 1.82+
+[td] Xcode
+[td] 16+ (macOS app)
+[td] Node.js
+[td] 20+
+[td] pnpm
+[h3] Rust Core
+[code] cargo build --workspace
+cargo test  --workspace
+[h3] macOS App
+[code] xcodebuild build \
+  -project apps/macos/cubelite/cubelite.xcodeproj \
+  -scheme cubelite \
+  -destination 'platform=macOS'
+[p] Or open in Xcode and press
+[h3] Desktop App
+[code] pnpm install
+pnpm --filter desktop dev
+[a] Apache 2.0 License
+[a] Contributing
+[p] © 2025–2026 CubeLite contributors

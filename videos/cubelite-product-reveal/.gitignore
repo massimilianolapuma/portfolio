@@ -1,0 +1,7 @@
+node_modules/
+.hyperframes/
+.thumbnails/
+renders/
+.media/
+assets/bgm/
+.audio.log
