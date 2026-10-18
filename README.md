@@ -4,9 +4,8 @@ Sito statico per GitHub Pages. Nessuna dipendenza o fase di build richiesta.
 
 ## Pubblicazione
 
-In GitHub apri **Settings → Pages**, scegli **Deploy from a branch**, quindi seleziona il branch `main` e la cartella `/(root)`.
+Il deploy è automatico: a ogni push su `main` il workflow `CI` esegue i check (HTML, accessibilità, link, video) e, se passano, pubblica su GitHub Pages solo i file del sito (`index.html`, `styles.css`, `script.js`, `assets/`). In **Settings → Pages** la sorgente deve essere **GitHub Actions**.
 
-Prima della pubblicazione, sostituisci `hello@example.com` in `index.html` con il tuo indirizzo email.
 
 ## Video manifesto
 
