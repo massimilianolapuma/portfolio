@@ -1,0 +1,134 @@
+<template id="01-too-many-contexts">
+  <div data-hf-id="hf-qdga" id="root" data-composition-id="01-too-many-contexts" data-width="1920" data-height="1080" data-duration="4">
+    <style>
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; color: #F1F5F9; font-family: "Inter", sans-serif;
+  --paper: #0F172A; --paper-2: #1E293B; --ink: #F1F5F9; --accent: #60A5FA; --muted: #94A3B8; --border: #334155; --live: #30D098; --hover: #93C5FD; }
+.f01-bg { position: absolute; inset: 0; background-color: var(--paper);
+  background-image: linear-gradient(rgba(96,165,250,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(96,165,250,0.07) 1px, transparent 1px);
+  background-size: 40px 40px; background-position: 0 0; }
+.f01-rule { position: absolute; left: 80px; right: 80px; height: 1px; background: var(--border); }
+.f01-chrome { position: absolute; bottom: 22px; font: 500 18px "JetBrains Mono", monospace; color: var(--muted); letter-spacing: 0.04em; }
+.f01-layer { position: absolute; inset: 0; }
+.f01-mono { font-family: "JetBrains Mono", monospace; }
+
+.f01-chip { position: absolute; padding: 12px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--paper-2);
+  font: 500 26px "JetBrains Mono", monospace; color: var(--muted); white-space: nowrap; transform-origin: 50% 50%; will-change: transform, opacity; }
+.f01-chip::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--border); margin-right: 12px; vertical-align: middle; }
+.f01-head { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.f01-head h1 { margin: 0; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.035em; text-align: center; max-width: 1400px; will-change: transform, opacity; }
+.f01-word { display: inline-block; will-change: transform, opacity; }
+.f01-accent { color: var(--accent); }
+.f01-point { position: absolute; left: 946px; top: 526px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+  transform-origin: 50% 50%; z-index: 3; opacity: 0; }
+
+    </style>
+    <div data-hf-id="hf-u8j6" id="f01-bg" class="f01-bg clip" data-start="0" data-duration="4" data-track-index="0">
+      <div data-hf-id="hf-zg26" class="f01-rule" style="top: 58px"></div>
+      <div data-hf-id="hf-du5p" class="f01-rule" style="top: 1021px"></div>
+      <div data-hf-id="hf-o4fj" class="f01-chrome" style="left: 80px">CubeLite · Kubernetes Context Aggregator</div>
+      <div data-hf-id="hf-ntci" class="f01-chrome" style="right: 80px">01 / 06</div>
+    </div>
+    <div data-hf-id="hf-p3be" id="f01-stage" class="f01-layer clip" data-start="0" data-duration="4" data-track-index="1">
+      <div data-hf-id="hf-izep" class="f01-chip" data-rot="-3" style="left:150px; top:140px">prod-eu-west-1</div>
+      <div data-hf-id="hf-q34u" class="f01-chip" data-rot="2" style="left:560px; top:110px">staging</div>
+      <div data-hf-id="hf-289w" class="f01-chip" data-rot="-2" style="left:1290px; top:130px">dev-local</div>
+      <div data-hf-id="hf-pj8d" class="f01-chip" data-rot="3" style="left:1600px; top:210px">kind-cubelite</div>
+      <div data-hf-id="hf-sfxi" class="f01-chip" data-rot="2" data-depth="back" style="left:110px; top:330px">minikube</div>
+      <div data-hf-id="hf-zzts" class="f01-chip" data-rot="-2" style="left:1540px; top:360px">gke_prod_europe</div>
+      <div data-hf-id="hf-k985" class="f01-chip" data-rot="-3" style="left:90px; top:700px">docker-desktop</div>
+      <div data-hf-id="hf-yxtc" class="f01-chip" data-rot="2" style="left:1560px; top:680px">eks-analytics</div>
+      <div data-hf-id="hf-f4lt" class="f01-chip" data-rot="2" style="left:230px; top:830px">aks-payments</div>
+      <div data-hf-id="hf-qsvy" class="f01-chip" data-rot="-2" data-depth="back" style="left:720px; top:830px">qa-2</div>
+      <div data-hf-id="hf-thsx" class="f01-chip" data-rot="3" style="left:1140px; top:830px">sandbox</div>
+      <div data-hf-id="hf-khu8" class="f01-chip" data-rot="-3" style="left:1620px; top:830px">k3d-demo</div>
+      <div data-hf-id="hf-tqxr" class="f01-chip" data-rot="-1" data-depth="back" style="left:420px; top:250px">preprod</div>
+      <div data-hf-id="hf-p96v" class="f01-chip" data-rot="2" data-depth="back" style="left:1120px; top:250px">ci-runners</div>
+      <div data-hf-id="hf-3tmy" class="f01-chip" data-rot="-2" data-depth="back" style="left:330px; top:740px">homelab</div>
+      <div data-hf-id="hf-soyc" class="f01-chip" data-rot="1" data-depth="back" style="left:1330px; top:750px">edge-cluster</div>
+      <div data-hf-id="hf-nflq" class="f01-head"><h1 data-hf-id="hf-90t7" id="f01-headline"><span data-hf-id="hf-qpma" class="f01-word" data-group="0">Too</span> <span data-hf-id="hf-81af" class="f01-word" data-group="0">many</span> <span data-hf-id="hf-gg6p" class="f01-word" data-group="1">Kubernetes</span> <span data-hf-id="hf-u9ur" class="f01-word f01-accent" data-group="2">contexts?</span></h1></div>
+      <div data-hf-id="hf-kxpe" id="f01-point" class="f01-point"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        const FRAME = "01-too-many-contexts";
+        const root = document.querySelector('[data-composition-id="' + FRAME + '"]');
+        const q = (sel) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
+        const tl = gsap.timeline({ paused: true });
+
+        const CX = 960, CY = 540;
+        // Deterministic chip geometry: JetBrains Mono advance 0.6em @26px, + padding/dot/border.
+        const CHIP_H = 62;
+        const chipW = (el) => el.textContent.length * 15.6 + 40 + 22 + 2;
+        // Deterministic pseudo-random in [-1, 1] from the chip index.
+        const prand = (i, k) => { const s = Math.sin((i + 1) * 12.9898 + k * 78.233) * 43758.5453; return (s - Math.floor(s)) * 2 - 1; };
+
+        const chips = q(".f01-chip").map((el, i) => {
+          const left = parseFloat(el.style.left), top = parseFloat(el.style.top);
+          const cx = left + chipW(el) / 2, cy = top + CHIP_H / 2;
+          const vx = cx - CX, vy = cy - CY;
+          const len = Math.max(1, Math.hypot(vx, vy));
+          const back = el.dataset.depth === "back";
+          return { el, i, rot: Number(el.dataset.rot), back,
+            nx: vx / len, ny: vy / len, toX: CX - cx, toY: CY - cy, dist: len,
+            restScale: back ? 0.84 : 1, restOpacity: back ? 0.55 : 1 };
+        });
+
+        // ── Scene 1 (0.0–1.1s): chips drift in from every edge (center-outward expansion run in reverse:
+        // they travel inward along their radial line from off-frame to the scattered rest). Back layer
+        // travels less, arrives a touch later, smaller + dimmer → layered depth.
+        const entryOrder = chips.slice().sort((a, b) => (a.back - b.back) || (b.dist - a.dist));
+        entryOrder.forEach((c, k) => {
+          const travel = c.back ? 620 : 1050;
+          tl.fromTo(c.el,
+            { x: c.nx * travel, y: c.ny * travel, rotation: c.rot * 4, scale: c.restScale * 0.9, opacity: 0 },
+            { x: 0, y: 0, rotation: c.rot, scale: c.restScale, opacity: c.restOpacity, duration: 0.66, ease: "power3.out" },
+            0.04 + k * 0.026);
+        });
+
+        // ── Scene 2 (1.1–2.6s): headline rises word-group by word-group; chips dim back and keep a barely-there jitter.
+        const groupAt = [1.12, 1.42, 1.74];
+        q(".f01-word").forEach((w, j) => {
+          const g = Number(w.dataset.group);
+          tl.fromTo(w,
+            { y: 80, opacity: 0, filter: "blur(10px)" },
+            { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.62, ease: "power3.out" },
+            groupAt[g] + (g === 0 ? j * 0.07 : 0));
+        });
+        chips.forEach((c) => {
+          tl.to(c.el, { opacity: c.back ? 0.32 : 0.62, duration: 0.5, ease: "power2.out" }, 1.14);
+          tl.to(c.el, {
+            x: prand(c.i, 1) * 5, y: prand(c.i, 2) * 4, rotation: c.rot + prand(c.i, 3) * 0.7,
+            duration: 1.46, ease: "sine.inOut" }, 1.14);
+        });
+
+        // ── Scene 3 (2.6–3.4s): headline holds; chips accelerate to center along straight paths, shrinking + fading
+        // (center-outward expansion inverted: cluster inward). Far chips leave first so all arrive together.
+        const convergeOrder = chips.slice().sort((a, b) => b.dist - a.dist);
+        convergeOrder.forEach((c, k) => {
+          const at = 2.6 + k * 0.01;
+          tl.to(c.el, { x: c.toX, y: c.toY, rotation: 0, scale: 0.18, duration: 0.66, ease: "power3.in" }, at);
+          tl.to(c.el, { opacity: 0, duration: 0.3, ease: "power1.in" }, at + 0.36);
+        });
+
+        // ── Scene 4 (3.4–4.0s): scale-swap — headline (outgoing) rushes up and out with power2.in while the
+        // blue point (incoming) settles in at exact center with power3.out, overlapping the exit; holds for the cut.
+        tl.to("#f01-headline", { y: -46, scale: 0.94, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.36);
+        tl.fromTo("#f01-point",
+          { scale: 0.6, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.42, ease: "power3.out" },
+          3.36 + 0.3 - 0.18); // lands at 3.90s, static scale 1 / opacity 1 through the cut
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines[FRAME] = tl;
+      })();
+    </script>
+  </div>
+</template>

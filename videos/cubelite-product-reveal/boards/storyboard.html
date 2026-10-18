@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CubeLite Reveal Storyboard</title>
+<style>
+  :root { --bg: #f6f7f9; --card: #ffffff; --ink: #0f172a; --muted: #475569; --line: #e2e8f0; --accent: #2563eb; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, system-ui, -apple-system, sans-serif; }
+  header { max-width: 1320px; margin: 0 auto; padding: 40px 24px 8px; }
+  h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.02em; }
+  header p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+  main { max-width: 1320px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; }
+  .act { grid-column: 1 / -1; margin-top: 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+  .frame { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .frame img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0f172a; }
+  .title { padding: 14px 16px 0; font-weight: 700; font-size: 16px; }
+  .time { padding: 2px 16px 0; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .words { margin: 8px 16px 16px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CubeLite — product reveal · 30s · 1920×1080</h1>
+  <p>Static sketches: final layout, copy, fonts and colors; motion arrives in the build. Music: minimal electronic bed (HeyGen catalog), no voice-over.</p>
+</header>
+<main>
+  <section class="act">Act 1: The problem</section>
+  <div class="frame">
+    <img src="stills/frame-00-at-2.6s.png" alt="" />
+    <div class="title">01: Too many contexts</div>
+    <div class="time">0.0 to 4.0s</div>
+    <p class="words">Context chips crowd the frame; the question lands; the chips converge into one blue point.</p>
+  </div>
+  <section class="act">Act 2: The product</section>
+  <div class="frame">
+    <img src="stills/frame-01-at-7.8s.png" alt="" />
+    <div class="title">02: One unified interface</div>
+    <div class="time">4.0 to 9.0s</div>
+    <p class="words">The point opens into an ordered node system; icon + CubeLite resolve at the hub.</p>
+  </div>
+  <div class="frame">
+    <img src="stills/frame-02-at-13.2s.png" alt="" />
+    <div class="title">03: Discover. Switch. Manage.</div>
+    <div class="time">9.0 to 15.0s</div>
+    <p class="words">Each verb lights in turn with its proof: merged kubeconfigs → one-click switch (shown) → menu-bar quick-switch.</p>
+  </div>
+  <section class="act">Act 3: Why trust it</section>
+  <div class="frame">
+    <img src="stills/frame-03-at-19.5s.png" alt="" />
+    <div class="title">04: Local-first by design</div>
+    <div class="time">15.0 to 21.0s</div>
+    <p class="words">Credentials settle into the Keychain inside "your machine"; lines to the cloud are cut at the boundary.</p>
+  </div>
+  <div class="frame">
+    <img src="stills/frame-04-at-24.2s.png" alt="" />
+    <div class="title">05: Native where you work</div>
+    <div class="time">21.0 to 26.0s</div>
+    <p class="words">Two abstract platform cards — native macOS (SwiftUI) and cross-platform Desktop (Tauri, early preview). No invented UI.</p>
+  </div>
+  <section class="act">Act 4: Call to action</section>
+  <div class="frame">
+    <img src="stills/frame-05-at-28.4s.png" alt="" />
+    <div class="title">06: Without the friction</div>
+    <div class="time">26.0 to 30.0s</div>
+    <p class="words">Icon + CubeLite, the tagline, the URL with an underline that draws on; clean fade to dark.</p>
+  </div>
+</main>
+</body>
+</html>

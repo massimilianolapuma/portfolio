@@ -1,0 +1,142 @@
+<template id="05-native">
+  <div data-hf-id="hf-yd8c" id="root" data-composition-id="05-native" data-width="1920" data-height="1080" data-duration="5.5">
+    <style>
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; color: #F1F5F9; font-family: "Inter", sans-serif;
+  --paper: #0F172A; --paper-2: #1E293B; --ink: #F1F5F9; --accent: #60A5FA; --muted: #94A3B8; --border: #334155; --live: #30D098; --hover: #93C5FD; }
+.f05-bg { position: absolute; inset: 0; background-color: var(--paper);
+  background-image: linear-gradient(rgba(96,165,250,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(96,165,250,0.07) 1px, transparent 1px);
+  background-size: 40px 40px; background-position: 0 0; }
+.f05-rule { position: absolute; left: 80px; right: 80px; height: 1px; background: var(--border); }
+.f05-chrome { position: absolute; bottom: 22px; font: 500 18px "JetBrains Mono", monospace; color: var(--muted); letter-spacing: 0.04em; }
+.f05-layer { position: absolute; inset: 0; }
+.f05-mono { font-family: "JetBrains Mono", monospace; }
+
+.f05-head { position: absolute; left: 120px; top: 150px; font-weight: 800; font-size: 112px; letter-spacing: -0.04em; line-height: 1; }
+.f05-word { display: inline-block; }
+.f05-cards { position: absolute; left: 120px; right: 120px; top: 380px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+/* Card = fill layer + drawn border + content; landed state matches the approved sketch
+   (1px #334155 edge, 20px radius, paper-2 fill, 3px accent top edge on the macOS card). */
+.f05-card { position: relative; box-sizing: border-box; min-height: 470px; }
+.f05-fill { position: absolute; inset: 0; border-radius: 20px; background: var(--paper-2); overflow: hidden; }
+.f05-accent { position: absolute; left: 0; right: 0; top: 1px; height: 3px; background: var(--accent); transform-origin: 0 50%; }
+.f05-edge { position: absolute; left: 0; top: 0; width: 820px; height: 470px; overflow: visible; }
+.f05-edge rect { fill: none; stroke: var(--border); stroke-width: 1; stroke-dasharray: 1; }
+.f05-body { position: relative; box-sizing: border-box; min-height: 470px; padding: 45px 49px; display: flex; flex-direction: column; gap: 22px; }
+
+.f05-kicker { font: 500 24px "JetBrains Mono", monospace; color: var(--accent); }
+.f05-title { display: flex; align-items: center; gap: 22px; font-weight: 800; font-size: 76px; letter-spacing: -0.035em; line-height: 1; }
+.f05-pill { font: 500 22px "JetBrains Mono", monospace; color: var(--muted); border: 1px solid #475569; border-radius: 99px; padding: 6px 16px; letter-spacing: 0; }
+.f05-line { font: 500 32px "JetBrains Mono", monospace; color: var(--ink); }
+.f05-line.dim { color: var(--muted); }
+.f05-os { display: inline-block; }
+
+    </style>
+    <div data-hf-id="hf-s3sw" id="f05-bg" class="f05-bg clip" data-start="0" data-duration="5.5" data-track-index="0">
+      <div data-hf-id="hf-3iiq" class="f05-rule" style="top: 58px"></div>
+      <div data-hf-id="hf-hp61" class="f05-rule" style="top: 1021px"></div>
+      <div data-hf-id="hf-fj7v" class="f05-chrome" style="left: 80px">CubeLite · Kubernetes Context Aggregator</div>
+      <div data-hf-id="hf-s41m" class="f05-chrome" style="right: 80px">05 / 06</div>
+    </div>
+    <div data-hf-id="hf-3dbc" id="f05-stage" class="f05-layer clip" data-start="0" data-duration="5.5" data-track-index="1">
+      <div data-hf-id="hf-6ti2" class="f05-head"><span data-hf-id="hf-yc1m" class="f05-word">Native</span> <span data-hf-id="hf-vc20" class="f05-word">where</span> <span data-hf-id="hf-2vm4" class="f05-word">you</span> <span data-hf-id="hf-f5ve" class="f05-word">work.</span></div>
+      <div data-hf-id="hf-43w1" class="f05-cards">
+        <div data-hf-id="hf-idbg" id="f05-card-mac" class="f05-card">
+          <div data-hf-id="hf-atwn" class="f05-fill"><div data-hf-id="hf-lf9i" class="f05-accent"></div></div>
+          <svg data-hf-id="hf-ycxm" class="f05-edge" width="820" height="470"><rect data-hf-id="hf-zjod" x="0.5" y="0.5" width="819" height="469" rx="19.5" ry="19.5" pathLength="1"></rect></svg>
+          <div data-hf-id="hf-nk8g" class="f05-body">
+            <div data-hf-id="hf-dxx2" class="f05-kicker f05-seq">native app</div>
+            <div data-hf-id="hf-efd0" class="f05-title f05-seq">macOS</div>
+            <div data-hf-id="hf-4pxg" class="f05-line f05-seq">Swift 6 + SwiftUI</div>
+            <div data-hf-id="hf-d9f6" class="f05-line dim f05-seq">menu-bar quick-switch + main window</div>
+            <div data-hf-id="hf-cc34" class="f05-line dim f05-seq">macOS 14+</div>
+          </div>
+        </div>
+        <div data-hf-id="hf-srek" id="f05-card-desk" class="f05-card">
+          <div data-hf-id="hf-lf2f" class="f05-fill"></div>
+          <svg data-hf-id="hf-uwm6" class="f05-edge" width="820" height="470"><rect data-hf-id="hf-jptd" x="0.5" y="0.5" width="819" height="469" rx="19.5" ry="19.5" pathLength="1"></rect></svg>
+          <div data-hf-id="hf-ghe0" class="f05-body">
+            <div data-hf-id="hf-6zw6" class="f05-kicker f05-seq">cross-platform</div>
+            <div data-hf-id="hf-dpi6" class="f05-title"><span data-hf-id="hf-9o6m" class="f05-seq">Desktop</span><span data-hf-id="hf-hv9w" class="f05-pill f05-seq">early preview</span></div>
+            <div data-hf-id="hf-685e" class="f05-line f05-seq">Tauri v2</div>
+            <div data-hf-id="hf-25oc" class="f05-line dim"><span data-hf-id="hf-aemz" class="f05-os f05-seq">macOS</span><span data-hf-id="hf-laih" class="f05-os f05-seq">&nbsp;·&nbsp;Linux</span><span data-hf-id="hf-uax2" class="f05-os f05-seq">&nbsp;·&nbsp;Windows</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines["05-native"] = tl;
+
+        const root = document.querySelector('[data-composition-id="05-native"]') || document;
+        const q = (sel, el) => Array.from((el || root).querySelectorAll(sel));
+
+        // Scene 1 (0.0–1.0s): headline rises, per-word stagger.
+        tl.fromTo(q(".f05-word"),
+          { y: 56, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.11 }, 0.05);
+
+        // Card self-assemble (grid-card-assemble cascade): rise from below, border draws,
+        // fill fades, accent top edge sweeps left→right.
+        function assemble(card, t) {
+          tl.fromTo(card, { y: 48 }, { y: 0, duration: 0.7, ease: "power3.out" }, t);
+          tl.fromTo(card.querySelector(".f05-edge rect"),
+            { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.65, ease: "power2.inOut" }, t);
+          tl.fromTo(card.querySelector(".f05-fill"),
+            { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, t + 0.12);
+          const accent = card.querySelector(".f05-accent");
+          if (accent) {
+            tl.fromTo(accent, { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, t + 0.3);
+          }
+        }
+
+        // dynamic-content-sequencing: reveal starts are pre-computed ONCE from each line's
+        // content length (longer copy earns more lead time), then fitted into the scene window.
+        const BASE_GAP = 0.1, SEC_PER_CHAR = 0.004;
+        function sequence(card, from, lastStart) {
+          const items = q(".f05-seq", card);
+          let cumulative = 0;
+          const raw = items.map((el) => {
+            const start = cumulative;
+            cumulative += BASE_GAP + el.textContent.trim().length * SEC_PER_CHAR;
+            return start;
+          });
+          const span = raw[raw.length - 1] || 1;
+          const k = (lastStart - from) / span;
+          items.forEach((el, i) => {
+            const isPill = el.classList.contains("f05-pill");
+            tl.fromTo(el,
+              isPill ? { opacity: 0, scale: 0.86 } : { opacity: 0, y: 18 },
+              isPill
+                ? { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }
+                : { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+              from + raw[i] * k);
+          });
+        }
+
+        // Scene 2 (1.0–2.4s): macOS card, then its lines in order.
+        const mac = root.querySelector("#f05-card-mac");
+        assemble(mac, 1.0);
+        sequence(mac, 1.35, 2.0);
+
+        // Scene 3 (2.4–3.6s): Desktop card to the right; pill, Tauri v2, then OS names one by one.
+        const desk = root.querySelector("#f05-card-desk");
+        assemble(desk, 2.4);
+        sequence(desk, 2.72, 3.25);
+
+        // Scene 4 (3.6–5.0s): held two-card read, still. Pad the timeline to the full 5s.
+        tl.set({}, {}, 5);
+      })();
+    </script>
+  </div>
+</template>
