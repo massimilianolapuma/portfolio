@@ -1,0 +1,89 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:29.285Z",
+        "reason": "incumbent site design authored by the user (refinement preserves identity; video brief reuses it)"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:29.326Z",
+        "reason": "incumbent site design authored by the user (refinement preserves identity; video brief reuses it)"
+      },
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/styles.css"
+        ],
+        "createdAt": "2026-10-18T18:15:29.366Z",
+        "reason": "incumbent site design authored by the user (refinement preserves identity; video brief reuses it)"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/styles.css"
+        ],
+        "createdAt": "2026-10-18T18:15:29.621Z",
+        "reason": "incumbent site design authored by the user (refinement preserves identity; video brief reuses it)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:29.836Z",
+        "reason": "verified in context: full-bleed bands / link underline without radius / brand marquee now reduced-motion safe / 64px display line-height"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:29.969Z",
+        "reason": "verified in context: full-bleed bands / link underline without radius / brand marquee now reduced-motion safe / 64px display line-height"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:30.027Z",
+        "reason": "verified in context: full-bleed bands / link underline without radius / brand marquee now reduced-motion safe / 64px display line-height"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/index.html"
+        ],
+        "createdAt": "2026-10-18T18:15:30.076Z",
+        "reason": "verified in context: full-bleed bands / link underline without radius / brand marquee now reduced-motion safe / 64px display line-height"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "/Users/massimilianolapuma/projects/personal/portfolio/styles.css"
+        ],
+        "createdAt": "2026-10-18T18:15:35.610Z",
+        "reason": "verified: footer link underline (border-bottom) has no border-radius"
+      }
+    ]
+  }
+}

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Fonts — same families as ../styles.css (Manrope, DM Mono).
+         Gelasio italic = open-source, Georgia-metric stand-in for the site's <em> (Georgia). */
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/manrope-latin-300-normal.woff2") format("woff2"); font-weight: 300; font-style: normal; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+      @font-face { font-family: "DM Mono"; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "DM Mono"; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+      @font-face { font-family: "Gelasio"; src: url("assets/fonts/gelasio-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+
+      /* Palette — tokens from ../styles.css */
+      :root {
+        --ink: #12110f;
+        --paper: #f3f0e9;
+        --acid: #c9ff31;
+        --orange: #ff6337;
+        --muted: #77736d;
+        --muted-text: #6b6761; /* --muted darkened for small video labels (AA on paper) */
+        --rule: #c9c4bc;
+        --shade: #e4dfd4;
+        --shade-deep: #d2ccbf;
+        --shadow: rgba(18, 17, 15, 0.16);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Manrope", sans-serif;
+      }
+      .layer { position: absolute; inset: 0; }
+
+      /* ── Grid (120px module) ── */
+      #grid-wrap { position: absolute; inset: 0; }
+      .g-v { position: absolute; top: 0; width: 1px; height: 1080px; background: var(--ink); opacity: 0.16; }
+      .g-h { position: absolute; left: 0; width: 1920px; height: 1px; background: var(--ink); opacity: 0.16; }
+      .g-v.major, .g-h.major { opacity: 0.32; }
+      .g-x { position: absolute; width: 22px; height: 22px; }
+      .g-x::before, .g-x::after { content: ""; position: absolute; background: var(--ink); }
+      .g-x::before { left: 10px; top: 0; width: 2px; height: 22px; }
+      .g-x::after { left: 0; top: 10px; width: 22px; height: 2px; }
+
+      /* ── Chrome (persistent, matches site header + section labels) ── */
+      .brand {
+        position: absolute; left: 120px; top: 0; height: 120px;
+        display: flex; align-items: center;
+        font: 500 30px "DM Mono", monospace; letter-spacing: -0.08em;
+      }
+      .counter {
+        position: absolute; right: 120px; top: 0; height: 120px;
+        display: flex; align-items: center; gap: 12px;
+        font: 500 22px "DM Mono", monospace; letter-spacing: 0.06em; color: var(--muted-text);
+      }
+      .count-stack { position: relative; display: block; width: 32px; height: 32px; overflow: hidden; color: var(--ink); }
+      .count { position: absolute; left: 0; top: 0; display: block; line-height: 32px; }
+      .count.later { opacity: 0; visibility: hidden; }
+      .rail { position: absolute; left: 120px; right: 120px; top: 1019px; height: 2px; background: var(--rule); }
+      .rail-fill { position: absolute; inset: 0; background: var(--ink); transform-origin: left center; }
+      .noise {
+        position: absolute; inset: 0; pointer-events: none; opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+      }
+
+      /* ── Shared type ── */
+      .scene-content {
+        width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        padding: 120px 120px;
+      }
+      .display { font-weight: 800; letter-spacing: -0.065em; line-height: 0.92; }
+      .mask { display: block; overflow: hidden; padding: 0.03em 0.1em 0.13em 0; }
+      .mask + .mask { margin-top: -0.14em; }
+      .mask-in { display: block; white-space: nowrap; }
+
+      /* Scene 1 */
+      .s1-content { justify-content: flex-end; padding-bottom: 200px; }
+      .s1-content .display { font-size: 300px; }
+      .dot { display: block; width: 22px; height: 22px; border-radius: 50%; background: var(--orange); margin: 0 0 36px 4px; }
+
+      /* Scene 2 */
+      .s2-content { justify-content: center; }
+      .w { display: block; width: fit-content; font-size: 138px; font-weight: 800; letter-spacing: -0.065em; line-height: 1.02; padding: 0 0.12em 0.06em 0; white-space: nowrap; }
+      .sl { font-weight: 300; color: var(--orange); }
+      .node {
+        position: absolute; width: 240px; height: 240px;
+        background: var(--paper); border: 2px solid var(--ink);
+      }
+      .node-ai { background: var(--orange); }
+      .nlabel { position: absolute; left: 18px; top: 14px; font: 500 20px "DM Mono", monospace; color: var(--muted-text); }
+      .node-ai .nlabel { color: var(--ink); }
+      .glyph { position: absolute; right: 26px; bottom: 26px; }
+      .g-circle { width: 64px; height: 64px; border: 3px solid var(--ink); border-radius: 50%; }
+      .g-diamond { width: 46px; height: 46px; border: 3px solid var(--ink); transform: rotate(45deg); right: 34px; bottom: 34px; }
+      .g-bars { width: 72px; height: 34px; border-top: 10px solid var(--ink); border-bottom: 10px solid var(--ink); }
+      .g-star { width: 64px; height: 64px; background: var(--ink); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); }
+      .conn { position: absolute; background: var(--ink); }
+      .conn-h { height: 3px; }
+      .conn-v { width: 3px; }
+      .port { position: absolute; width: 12px; height: 12px; background: var(--orange); border: 2px solid var(--ink); }
+
+      /* Scene 3 */
+      .s3-content { justify-content: center; padding-bottom: 160px; }
+      .s3-content .display { font-size: 230px; }
+      .ch { display: inline-block; }
+      .sub { display: block; margin-top: 22px; font: 500 46px "DM Mono", monospace; letter-spacing: -0.02em; white-space: nowrap; }
+
+      .cube-shadow {
+        position: absolute; left: 1250px; top: 735px; width: 460px; height: 70px; border-radius: 50%;
+        background: radial-gradient(closest-side, var(--shadow), transparent);
+      }
+      .cube-stage { position: absolute; left: 1320px; top: 360px; width: 320px; height: 320px; perspective: 1800px; }
+      .cube-move, .cube-tilt, .cube, .fr { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .cube-tilt { transform: rotateX(-24deg); }
+      .face {
+        position: absolute; inset: 0;
+        border: 3px solid var(--ink);
+        background-color: var(--paper);
+        background-image:
+          linear-gradient(var(--rule), var(--rule)),
+          linear-gradient(var(--rule), var(--rule));
+        background-size: 2px 100%, 100% 2px;
+        background-position: center, center;
+        background-repeat: no-repeat;
+      }
+      .f-side { background-color: var(--shade); }
+      .f-deep { background-color: var(--shade-deep); }
+
+      /* Scene 4 */
+      .s4-content { justify-content: flex-end; padding-bottom: 300px; }
+      .s4-content .display { font-size: 228px; }
+      .s4-content em { font-family: "Gelasio", serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; display: inline-block; margin-left: 0.06em; }
+      .rule { position: absolute; left: 120px; top: 839px; width: 1640px; height: 3px; background: var(--ink); transform-origin: left center; }
+      .square { position: absolute; left: 1760px; top: 820px; width: 40px; height: 40px; background: var(--acid); border: 3px solid var(--ink); }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-nzh3"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Grid: lines are generated in the script below (120px module) -->
+      <div data-hf-id="hf-np28" id="grid" class="clip layer" data-start="0" data-duration="12" data-track-index="0">
+        <div data-hf-id="hf-b8v6" id="grid-wrap"></div>
+      </div>
+
+      <!-- ① 0–3s · TEXT: "Designing systems" -->
+      <div data-hf-id="hf-nmc1" id="s1" class="clip layer" data-start="0" data-duration="3.2" data-track-index="1">
+        <div data-hf-id="hf-p848" class="scene-content s1-content">
+          <span data-hf-id="hf-jkr6" class="dot" id="s1-dot"></span>
+          <h1 data-hf-id="hf-su74" class="display">
+            <span data-hf-id="hf-vdsp" class="mask"><span data-hf-id="hf-smvj" class="mask-in" id="s1-l1">Designing</span></span>
+            <span data-hf-id="hf-2y5p" class="mask"><span data-hf-id="hf-j4ta" class="mask-in" id="s1-l2">systems</span></span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- ② 3–6s · TEXT: "Cloud / DevSecOps / Full stack / AI" -->
+      <div data-hf-id="hf-jz7s" id="s2" class="clip layer" data-start="3" data-duration="3.2" data-track-index="2">
+        <div data-hf-id="hf-ipcj" class="scene-content s2-content">
+          <div data-hf-id="hf-dfba" class="w" id="w1">Cloud <span data-hf-id="hf-v7rh" class="sl">/</span></div>
+          <div data-hf-id="hf-zl1e" class="w" id="w2">DevSecOps <span data-hf-id="hf-ofup" class="sl">/</span></div>
+          <div data-hf-id="hf-2qf2" class="w" id="w3">Full stack <span data-hf-id="hf-pmrs" class="sl">/</span></div>
+          <div data-hf-id="hf-suny" class="w" id="w4">AI</div>
+        </div>
+        <div data-hf-id="hf-gypp" class="node" id="n1" style="left: 1200px; top: 240px"><span data-hf-id="hf-xofq" class="nlabel">01</span><span data-hf-id="hf-q0v3" class="glyph g-circle"></span></div>
+        <div data-hf-id="hf-0jwt" class="node" id="n2" style="left: 1560px; top: 240px"><span data-hf-id="hf-y2qr" class="nlabel">02</span><span data-hf-id="hf-0dv5" class="glyph g-diamond"></span></div>
+        <div data-hf-id="hf-sijf" class="node" id="n3" style="left: 1200px; top: 600px"><span data-hf-id="hf-yh1s" class="nlabel">03</span><span data-hf-id="hf-9ffp" class="glyph g-bars"></span></div>
+        <div data-hf-id="hf-eerm" class="node node-ai" id="n4" style="left: 1560px; top: 600px"><span data-hf-id="hf-vowl" class="nlabel">04</span><span data-hf-id="hf-hoiv" class="glyph g-star"></span></div>
+        <div data-hf-id="hf-6ub8" class="conn conn-h" id="k12" style="left: 1440px; top: 359px; width: 120px"></div>
+        <div data-hf-id="hf-yryq" class="conn conn-v" id="k13" style="left: 1319px; top: 480px; height: 120px"></div>
+        <div data-hf-id="hf-jzw9" class="conn conn-v" id="k24" style="left: 1679px; top: 480px; height: 120px"></div>
+        <div data-hf-id="hf-78wg" class="conn conn-h" id="k34" style="left: 1440px; top: 719px; width: 120px"></div>
+        <div data-hf-id="hf-qoio" class="port" id="p12a" style="left: 1434px; top: 354px"></div>
+        <div data-hf-id="hf-vo0i" class="port" id="p12b" style="left: 1554px; top: 354px"></div>
+        <div data-hf-id="hf-qis9" class="port" id="p13a" style="left: 1314px; top: 474px"></div>
+        <div data-hf-id="hf-4qxn" class="port" id="p13b" style="left: 1314px; top: 594px"></div>
+        <div data-hf-id="hf-5myk" class="port" id="p24a" style="left: 1674px; top: 474px"></div>
+        <div data-hf-id="hf-jt96" class="port" id="p24b" style="left: 1674px; top: 594px"></div>
+        <div data-hf-id="hf-3jln" class="port" id="p34a" style="left: 1554px; top: 714px"></div>
+        <div data-hf-id="hf-823h" class="port" id="p34b" style="left: 1434px; top: 714px"></div>
+      </div>
+
+      <!-- ③ 6–9s · TEXT: "Cubelite — in development" -->
+      <div data-hf-id="hf-a4i1" id="s3" class="clip layer" data-start="6" data-duration="3.2" data-track-index="1">
+        <div data-hf-id="hf-gds2" class="scene-content s3-content">
+          <div data-hf-id="hf-m6y2" class="display">
+            <span data-hf-id="hf-452s" class="mask"><span data-hf-id="hf-trja" class="mask-in" id="s3-title"><span data-hf-id="hf-yx6t" class="ch">C</span><span data-hf-id="hf-e6cj" class="ch">u</span><span data-hf-id="hf-ijpu" class="ch">b</span><span data-hf-id="hf-ol83" class="ch">e</span><span data-hf-id="hf-hr3s" class="ch">l</span><span data-hf-id="hf-frkn" class="ch">i</span><span data-hf-id="hf-eknk" class="ch">t</span><span data-hf-id="hf-7x77" class="ch">e</span></span></span>
+          </div>
+          <span data-hf-id="hf-gwyy" class="sub" id="s3-sub">— in development</span>
+        </div>
+      </div>
+
+      <!-- Cube: assembles in ③, becomes the acid square in ④ -->
+      <div data-hf-id="hf-oh7d" id="cube-clip" class="clip layer" data-start="6" data-duration="4" data-track-index="4">
+        <div data-hf-id="hf-q91y" class="cube-shadow" id="cube-shadow"></div>
+        <div data-hf-id="hf-nhdm" class="cube-stage">
+          <div data-hf-id="hf-roug" class="cube-move" id="cube-move">
+            <div data-hf-id="hf-vifh" class="cube-tilt">
+              <div data-hf-id="hf-22te" class="cube" id="cube">
+                <div data-hf-id="hf-6kpq" class="fr" style="transform: rotateX(-90deg)"><div data-hf-id="hf-ifs0" class="face f-deep" id="f-bottom"></div></div>
+                <div data-hf-id="hf-crb0" class="fr" style="transform: rotateY(180deg)"><div data-hf-id="hf-bsc3" class="face" id="f-back"></div></div>
+                <div data-hf-id="hf-4q43" class="fr" style="transform: rotateY(-90deg)"><div data-hf-id="hf-god5" class="face f-side" id="f-left"></div></div>
+                <div data-hf-id="hf-76h6" class="fr" style="transform: rotateY(90deg)"><div data-hf-id="hf-kuys" class="face f-side" id="f-right"></div></div>
+                <div data-hf-id="hf-d46g" class="fr"><div data-hf-id="hf-vqfj" class="face" id="f-front"></div></div>
+                <div data-hf-id="hf-tzb1" class="fr" style="transform: rotateX(90deg)"><div data-hf-id="hf-4dtb" class="face" id="f-top"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 9–12s · TEXT: "Making the next step possible." -->
+      <div data-hf-id="hf-wbpg" id="s4" class="clip layer" data-start="9" data-duration="3" data-track-index="2">
+        <div data-hf-id="hf-5g15" class="layer" id="s4-wrap">
+          <div data-hf-id="hf-xqxp" class="scene-content s4-content">
+            <h2 data-hf-id="hf-tnpz" class="display">
+              <span data-hf-id="hf-3qrr" class="mask"><span data-hf-id="hf-5s13" class="mask-in" id="s4-l1">Making the next</span></span>
+              <span data-hf-id="hf-4xou" class="mask"><span data-hf-id="hf-5z3x" class="mask-in" id="s4-l2">step <em data-hf-id="hf-t7bb" id="s4-em">possible.</em></span></span>
+            </h2>
+          </div>
+          <div data-hf-id="hf-eln4" class="rule" id="s4-rule"></div>
+          <div data-hf-id="hf-f5o2" class="square" id="s4-square"></div>
+        </div>
+      </div>
+
+      <!-- Music bed: HeyGen catalog track bgm_003 (soft piano + light pulsing synth).
+           Last 12s of the track so its natural ending lands on the final dissolve.
+           data-volume 0.9 ≈ -16 LUFS; fades via the volume lane; truepeak ceiling -1.5 dBTP. -->
+      <audio
+        id="music-bed"
+        src=".media/audio/bgm/bgm_003.wav"
+        data-start="0"
+        data-duration="12"
+        data-media-start="16.5"
+        data-track-index="6"
+        data-volume="0.9"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.25,"v":1},{"t":10.8,"v":1},{"t":12,"v":0}]}]}'
+        data-fx-chain='{"version":1,"nodes":[{"type":"truepeak","id":"tp1","params":{"ceiling":-1.5}}]}'
+      ></audio>
+
+      <!-- Chrome: brand, section counter, progress rail, paper noise -->
+      <div data-hf-id="hf-9nin" id="chrome" class="clip layer" data-start="0" data-duration="12" data-track-index="5">
+        <div data-hf-id="hf-6lsv" class="brand">/architect</div>
+        <div data-hf-id="hf-el44" class="counter">
+          <span data-hf-id="hf-3msp" class="count-stack">
+            <span data-hf-id="hf-6zor" class="count" id="c1">01</span>
+            <span data-hf-id="hf-9ihj" class="count later" id="c2">02</span>
+            <span data-hf-id="hf-331h" class="count later" id="c3">03</span>
+            <span data-hf-id="hf-7b3r" class="count later" id="c4">04</span>
+          </span>
+          <span data-hf-id="hf-kfzu">/ 04</span>
+        </div>
+        <div data-hf-id="hf-qzq8" class="rail"><div data-hf-id="hf-77te" class="rail-fill" id="rail-fill"></div></div>
+        <div data-hf-id="hf-6so6" class="noise"></div>
+      </div>
+    </div>
+
+    <script>
+      // ── Build the 120px grid (deterministic) ──
+      const gridWrap = document.getElementById("grid-wrap");
+      const vLines = [];
+      const hLines = [];
+      const crosses = [];
+      for (let col = 1; col <= 15; col++) {
+        const el = document.createElement("div");
+        el.className = "g-v" + (col % 4 === 0 ? " major" : "");
+        el.style.left = col * 120 + "px";
+        gridWrap.appendChild(el);
+        vLines.push(el);
+      }
+      for (let row = 1; row <= 8; row++) {
+        const el = document.createElement("div");
+        el.className = "g-h" + (row % 4 === 0 ? " major" : "");
+        el.style.top = row * 120 + "px";
+        gridWrap.appendChild(el);
+        hLines.push(el);
+      }
+      [[4, 4], [8, 4], [12, 4], [4, 8], [8, 8], [12, 8]].forEach(([col, row]) => {
+        const el = document.createElement("div");
+        el.className = "g-x";
+        el.style.left = col * 120 - 10 + "px";
+        el.style.top = row * 120 - 10 + "px";
+        gridWrap.appendChild(el);
+        crosses.push(el);
+      });
+
+      const acid = getComputedStyle(document.documentElement).getPropertyValue("--acid").trim();
+      const tl = gsap.timeline({ paused: true });
+
+      // ── Chrome ──
+      tl.fromTo("#rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 11, ease: "none" }, 0.2);
+      function swapCount(from, to, t, immediate = true) {
+        tl.to(from, { yPercent: -100, autoAlpha: 0, duration: 0.3, ease: "power2.in" }, t);
+        tl.fromTo(to, { yPercent: 100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out", immediateRender: immediate }, t + 0.12);
+      }
+      swapCount("#c1", "#c2", 3.0);
+      swapCount("#c2", "#c3", 6.0);
+      swapCount("#c3", "#c4", 9.0);
+
+      // ── ① Grid emerges, "Designing systems" ──
+      vLines.forEach((el, i) => gsap.set(el, { transformOrigin: i % 2 ? "50% 100%" : "50% 0%" }));
+      hLines.forEach((el, i) => gsap.set(el, { transformOrigin: i % 2 ? "100% 50%" : "0% 50%" }));
+      tl.fromTo(vLines, { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: "expo.out", stagger: { each: 0.03, from: "center" } }, 0.2);
+      tl.fromTo(hLines, { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power3.out", stagger: { each: 0.04, from: "center" } }, 0.45);
+      tl.fromTo(crosses, { autoAlpha: 0, rotation: -90, scale: 0.4 }, { autoAlpha: 1, rotation: 0, scale: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.05 }, 1.1);
+      tl.fromTo("#s1-dot", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, 0.9);
+      tl.fromTo("#s1-l1", { yPercent: 110 }, { yPercent: 0, duration: 0.95, ease: "power4.out" }, 1.05);
+      tl.fromTo("#s1-l2", { yPercent: 110 }, { yPercent: 0, duration: 0.95, ease: "power4.out" }, 1.2);
+      tl.to(["#s1-l1", "#s1-l2"], { yPercent: -110, duration: 0.38, ease: "power3.in", stagger: 0.06 }, 2.72);
+      tl.to("#s1-dot", { scale: 0, duration: 0.25, ease: "power2.in" }, 2.75);
+
+      // ── ② Grid → modules + connections, "Cloud / DevSecOps / Full stack / AI" ──
+      tl.to("#grid-wrap", { opacity: 0.45, duration: 0.8, ease: "sine.inOut" }, 3.0);
+      const beats2 = [3.2, 3.65, 4.1, 4.55];
+      ["#w1", "#w2", "#w3", "#w4"].forEach((w, i) => {
+        tl.fromTo(w, { clipPath: "inset(0% 100% 0% 0%)", x: -24 }, { clipPath: "inset(0% 0% 0% 0%)", x: 0, duration: 0.6, ease: "power3.out" }, beats2[i]);
+        tl.fromTo("#n" + (i + 1), { scale: 0.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.6, ease: "expo.out" }, beats2[i] - 0.05);
+      });
+      const links = [
+        { id: "#k12", prop: "scaleX", origin: "0% 50%", ports: ["#p12a", "#p12b"], t: 3.8 },
+        { id: "#k13", prop: "scaleY", origin: "50% 0%", ports: ["#p13a", "#p13b"], t: 4.25 },
+        { id: "#k24", prop: "scaleY", origin: "50% 0%", ports: ["#p24a", "#p24b"], t: 4.7 },
+        { id: "#k34", prop: "scaleX", origin: "100% 50%", ports: ["#p34a", "#p34b"], t: 4.78 },
+      ];
+      links.forEach(({ id, prop, origin, ports, t }) => {
+        tl.fromTo(id, { [prop]: 0, transformOrigin: origin }, { [prop]: 1, duration: 0.45, ease: "power2.inOut" }, t);
+        tl.fromTo(ports[0], { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(2.5)" }, t - 0.05);
+        tl.fromTo(ports[1], { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(2.5)" }, t + 0.38);
+      });
+      const allPorts = links.flatMap((l) => l.ports);
+      tl.to(allPorts, { scale: 1.6, duration: 0.22, ease: "sine.inOut", yoyo: true, repeat: 1, stagger: 0.04 }, 5.2);
+      tl.to(["#w1", "#w2", "#w3", "#w4"], { clipPath: "inset(0% 0% 0% 100%)", duration: 0.35, ease: "power3.in", stagger: 0.05 }, 5.7);
+      tl.to(["#k12", "#k13", "#k24", "#k34", ...allPorts], { autoAlpha: 0, duration: 0.2, ease: "power1.in" }, 5.72);
+      // nodes condense toward the cube's center (1480, 520)
+      [["#n1", 160, 160], ["#n2", -200, 160], ["#n3", 160, -200], ["#n4", -200, -200]].forEach(([n, dx, dy]) => {
+        tl.to(n, { x: dx, y: dy, scale: 0.35, autoAlpha: 0, duration: 0.5, ease: "power3.inOut" }, 5.75);
+      });
+
+      // ── ③ Cube assembles, "Cubelite — in development" ──
+      tl.fromTo("#cube", { rotationY: 15 }, { rotationY: 75, duration: 3.0, ease: "sine.inOut" }, 6.0);
+      tl.fromTo(
+        ["#f-bottom", "#f-back", "#f-left", "#f-right", "#f-front", "#f-top"],
+        { z: 440, autoAlpha: 0 },
+        { z: 160, autoAlpha: 1, duration: 0.9, ease: "expo.out", stagger: 0.07 },
+        6.05,
+      );
+      tl.to("#f-top", { backgroundColor: acid, duration: 0.5, ease: "power2.out" }, 7.0);
+      tl.fromTo("#cube-shadow", { scaleX: 0.3, autoAlpha: 0 }, { scaleX: 1, autoAlpha: 1, duration: 0.9, ease: "power2.out" }, 6.3);
+      tl.fromTo("#s3-title .ch", { yPercent: 110 }, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.035 }, 6.45);
+      tl.fromTo("#s3-sub", { autoAlpha: 0, x: -30 }, { autoAlpha: 1, x: 0, duration: 0.7, ease: "power2.out" }, 7.05);
+      tl.to("#s3-title", { yPercent: -110, duration: 0.32, ease: "power2.in" }, 8.7);
+      tl.to("#s3-sub", { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 8.72);
+
+      // ── ④ Cube → acid square, "Making the next step possible." ──
+      tl.to("#cube-move", { x: 300, y: 320, scale: 0.125, duration: 0.75, ease: "power3.inOut" }, 9.0);
+      tl.to("#cube", { rotationY: 135, duration: 0.75, ease: "power3.inOut" }, 9.0);
+      tl.to("#cube-move", { autoAlpha: 0, duration: 0.18, ease: "power1.in" }, 9.62);
+      tl.to("#cube-shadow", { autoAlpha: 0, duration: 0.3, ease: "power1.in" }, 9.0);
+      tl.fromTo("#s4-square", { scale: 0, rotation: 45 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, 9.6);
+      tl.to("#grid-wrap", { opacity: 0.8, duration: 1.0, ease: "sine.inOut" }, 9.2);
+      tl.fromTo("#s4-l1", { yPercent: 110 }, { yPercent: 0, duration: 1.0, ease: "expo.out" }, 9.3);
+      tl.fromTo("#s4-l2", { yPercent: 110 }, { yPercent: 0, duration: 1.0, ease: "expo.out" }, 9.46);
+      tl.fromTo("#s4-em", { x: 48, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.1, ease: "power2.out" }, 9.62);
+      tl.fromTo("#s4-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power2.inOut" }, 9.95);
+
+      // ── Dissolve back to blank paper (= frame 0, loopable) ──
+      tl.to("#s4-wrap", { autoAlpha: 0, duration: 0.75, ease: "power1.inOut" }, 11.2);
+      tl.to("#grid-wrap", { opacity: 0, duration: 0.75, ease: "sine.inOut" }, 11.2);
+      tl.to("#rail-fill", { autoAlpha: 0, duration: 0.6, ease: "power1.in" }, 11.2);
+      swapCount("#c4", "#c1", 11.3, false);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
